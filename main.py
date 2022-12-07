@@ -21,34 +21,39 @@ def SpeakText(command):
 # Loop infinitely for user to
 # speak
 
-while (1):
+def runListening():
 
     # Exception handling to handle
     # exceptions at the runtime
     try:
 
         # use the microphone as source for input.
-        with sr.Microphone() as source2:
+        with sr.Microphone() as source:
 
             # wait for a second to let the recognizer
             # adjust the energy threshold based on
             # the surrounding noise level
-            r.adjust_for_ambient_noise(source2, duration=0.2)
+            r.adjust_for_ambient_noise(source, duration=0.5)
 
             # listens for the user's input
-            print("recroding")
-            audio2 = r.listen(source2)
-            print(" not recroding")
+            print("[+] Recroding")
+            audio = r.listen(source)
+            print("[-] Stop recroding")
 
             # Using google to recognize audio
-            MyText = r.recognize_google(audio2)
+            MyText = r.recognize_google(audio)
             MyText = MyText.lower()
 
-            print("Did you say ", MyText)
-            SpeakText(MyText)
+            #print("Did you say ", MyText)
+            return MyText
 
     except sr.RequestError as e:
         print("Could not request results; {0}".format(e))
+        return -1
 
     except sr.UnknownValueError:
         print("unknown error occured")
+        return -2
+
+#print(runListening())
+#print(SpeakText(runListening()))
