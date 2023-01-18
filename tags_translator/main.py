@@ -1,14 +1,12 @@
 import numpy as np
-
 from tensorflow.keras import models
-
 from recording_helper import record_audio, terminate
 from tf_helper import preprocess_audiobuffer
 
 # !! Modify this in the correct order
-commands = ['down', 'go', 'left', 'no', 'right', 'stop', 'up', 'yes']
+commands = ['no', 'up', 'yes', 'left', 'go', 'down', 'stop', 'right']
 
-loaded_model = models.load_model("saved_model")
+loaded_model = models.load_model("tags_translator/saved_model")
 
 def predict_mic():
     audio = record_audio()
