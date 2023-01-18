@@ -2,6 +2,8 @@ import speech_recognition as sr
 import tkinter as tk
 from tkinter import ttk
 
+
+text = ""
 def on_press():
     r = sr.Recognizer()
     with sr.Microphone() as source:
